@@ -12,21 +12,21 @@ const client = contentful.createClient({
 
 export function getBlogPage(slug) {
   return client
-    .getEntries({ "fields.slug": slug, content_type: "blogPage" })
+    .getEntries({ "fields.slug": slug, content_type: "blogPage", include: 3 })
     .then((resp) => resp.items[0])
     .catch((err) => console.log(err));
 }
 
 export function getBlogPages() {
   return client
-    .getEntries({ content_type: "blogPage" })
+    .getEntries({ content_type: "blogPage", include: 3 })
     .then((resp) => resp.items)
     .catch((err) => console.log(err));
 }
 
 export function searchBlogPages(query = "undefined undefined") {
   return client
-    .getEntries({ query, content_type: "blogPage" })
+    .getEntries({ query, content_type: "blogPage", include: 3 })
     .then((resp) => resp.items)
     .catch((err) => console.log(err));
 }
